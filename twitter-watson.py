@@ -19,25 +19,33 @@ api = twitter.Api(consumer_key='PwgR7iTbJxSYUxLREaQ9k4aG3',
 
 #print(api.VerifyCredentials())
 
-search = api.GetSearch(term="clinton", lang='en', result_type='recent', count = 10, max_id='')
+
+allSearch = ""
+search = api.GetSearch(term="murder", lang='en', result_type='recent', count = 1000, max_id='')
 for tweet in search:
     #print(tweet.text.encode('utf-8'))
-    data = json.dumps(tone_analyzer.tone(
-    text=tweet.text),
-    indent=2)
+    # data = json.dumps(tone_analyzer.tone(
+    # text=tweet.text),
+    # indent=2)
     #print(data)
 
-    print(tweet.text)
-    actual = tone_analyzer.tone(text=tweet.text)
-    anger = actual["document_tone"]["tone_categories"][0]["tones"][0]
-    disgust = actual["document_tone"]["tone_categories"][0]["tones"][1]
-    fear = actual["document_tone"]["tone_categories"][0]["tones"][2]
-    joy = actual["document_tone"]["tone_categories"][0]["tones"][3]
-    sadness = actual["document_tone"]["tone_categories"][0]["tones"][4]
+    allSearch = allSearch + tweet.text
 
 
-    print("{:8}     Score: {}".format(anger["tone_name"], str(anger["score"])))
-    print("{:8}     Score: {}".format(disgust["tone_name"], str(disgust["score"])))
-    print("{:8}     Score: {}".format(fear["tone_name"], str(fear["score"])))
-    print("{:8}     Score: {}".format(joy["tone_name"], str(joy["score"])))
-    print("{:8}     Score: {}".format(sadness["tone_name"], str(sadness["score"])))
+
+#print(allSearch)
+actual = tone_analyzer.tone(text=tweet.text)
+anger = actual["document_tone"]["tone_categories"][0]["tones"][0]
+disgust = actual["document_tone"]["tone_categories"][0]["tones"][1]
+fear = actual["document_tone"]["tone_categories"][0]["tones"][2]
+joy = actual["document_tone"]["tone_categories"][0]["tones"][3]
+sadness = actual["document_tone"]["tone_categories"][0]["tones"][4]
+
+
+
+
+print("{:8}     Score: {}".format(anger["tone_name"], str(anger["score"])))
+print("{:8}     Score: {}".format(disgust["tone_name"], str(disgust["score"])))
+print("{:8}     Score: {}".format(fear["tone_name"], str(fear["score"])))
+print("{:8}     Score: {}".format(joy["tone_name"], str(joy["score"])))
+print("{:8}     Score: {}".format(sadness["tone_name"], str(sadness["score"])))
