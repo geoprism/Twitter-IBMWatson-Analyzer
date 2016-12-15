@@ -16,13 +16,13 @@ body{
 }
 
 #searchForm{
-  text-indent:6px;
+  text-indent:3px;
 }
 
 #hashtag{
   color:#00aced;
   position:absolute;
-  margin-top:9px;
+  margin-top:13px;
   margin-left:8px;
 }
 
