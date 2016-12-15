@@ -1,0 +1,47 @@
+body{
+  font-family: 'Varela Round';
+}
+
+.main-title{
+  text-align:center;
+  margin-top:15%;
+  font-size:60px;
+}
+
+.search-container{
+  width:50%;
+  position:center;
+  margin:0 auto;
+  margin-top:70px;
+}
+
+#searchForm{
+  text-indent:6px;
+}
+
+#hashtag{
+  color:#00aced;
+  position:absolute;
+  margin-top:9px;
+  margin-left:8px;
+}
+
+#tweet{
+  color:#00aced;
+}
+
+#color1{
+  color:#ed4100;
+}
+
+#color2{
+  color:#edb800;
+}
+
+#color3{
+  color:#00a17d;
+}
+
+#color4{
+  color:#65a3c4;
+}
