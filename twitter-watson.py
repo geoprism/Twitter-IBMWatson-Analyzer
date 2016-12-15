@@ -21,7 +21,7 @@ api = twitter.Api(consumer_key='PwgR7iTbJxSYUxLREaQ9k4aG3',
 
 
 allSearch = ""
-search = api.GetSearch(term="murder", lang='en', result_type='recent', count = 1000, max_id='')
+search = api.GetSearch(term="clinton", lang='en', result_type='recent', count = 1000, max_id='')
 for tweet in search:
     #print(tweet.text.encode('utf-8'))
     # data = json.dumps(tone_analyzer.tone(
@@ -34,7 +34,7 @@ for tweet in search:
 
 
 #print(allSearch)
-actual = tone_analyzer.tone(text=tweet.text)
+actual = tone_analyzer.tone(text=allSearch)
 anger = actual["document_tone"]["tone_categories"][0]["tones"][0]
 disgust = actual["document_tone"]["tone_categories"][0]["tones"][1]
 fear = actual["document_tone"]["tone_categories"][0]["tones"][2]
