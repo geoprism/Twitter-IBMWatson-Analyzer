@@ -1,25 +1,16 @@
-<head>
-  <title>TwitterTones</title>
-</head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
-  {{> info}}
+  <div>
+    <h1 class="main-title"> <span id="tweet">Tweet</span> <span id="color1">T</span><span id="color2">o</span><span id="color3">n</span><span id="color4">e</span> </h1>
+    {{> searchBar}}
+  </div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="searchBar">
+  <div class="search-container form-group">
+    <form class="searchForm">
+      <label id="hashtag">#</label>
+      <input type="text" name="searchbar" class="form-control" id="searchInput">
+    </form>
+  </div>
 </template>
