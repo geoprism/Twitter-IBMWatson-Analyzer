@@ -4,6 +4,12 @@
     <h1 class="main-title"> <span id="tweet">Tweet</span> <span id="color1">T</span><span id="color2">o</span><span id="color3">n</span><span id="color4">e</span> </h1>
     {{> searchBar}}
   </div>
+
+    <div>
+        {{> tweetTest}}
+    </div>
+
+
 </body>
 
 <template name="searchBar">
@@ -13,4 +19,12 @@
       <input type="text" name="searchbar" class="form-control" id="searchInput">
     </form>
   </div>
+</template>
+
+
+<template name="tweetTest">
+    <div>
+        <p> hellohello hello {{tester}} </p>
+    </div>
+
 </template>

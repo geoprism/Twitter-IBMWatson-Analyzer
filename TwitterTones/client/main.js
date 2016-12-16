@@ -1,7 +1,4 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
 
-import './main.html';
 
 
 Template.searchBar.events({
@@ -9,4 +6,31 @@ Template.searchBar.events({
     event.preventDefault();
     console.log(event.target.searchbar.value);
   },
+});
+
+
+Template.tweetTest.helpers({
+    tester: function(){
+        Meteor.call('tweetsRequest', 'happy', function(err, result){
+            if (err)
+              console.log(err);
+
+            Session.set('q', result);
+        });
+
+
+
+        // return ReactiveMethod.call("tweetsRequest", "lol");
+        // //var x = ReactiveMethod.call("tweetsRequest", "happy");
+        // //console.log(x);
+        // //return x;
+    },
+
+    getter: function(){
+        console.log(Session.get('q'));
+        return Session.get('q');
+
+    }
+
+
 });
