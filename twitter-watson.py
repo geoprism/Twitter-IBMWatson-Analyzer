@@ -21,7 +21,7 @@ api = twitter.Api(consumer_key='PwgR7iTbJxSYUxLREaQ9k4aG3',
 
 
 allSearch = ""
-search = api.GetSearch(term="clinton", lang='en', result_type='recent', count = 1000, max_id='')
+search = api.GetSearch(term="angry", lang='en', result_type='recent', count = 1000, max_id='')
 for tweet in search:
     #print(tweet.text.encode('utf-8'))
     # data = json.dumps(tone_analyzer.tone(
