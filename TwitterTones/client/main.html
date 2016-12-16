@@ -3,12 +3,8 @@
   <div>
     <h1 class="main-title"> <span id="tweet">Tweet</span> <span id="color1">T</span><span id="color2">o</span><span id="color3">n</span><span id="color4">e</span> </h1>
     {{> searchBar}}
+    {{> graph}}
   </div>
-
-    <div>
-        {{> tweetTest}}
-    </div>
-
 
 </body>
 
@@ -16,15 +12,24 @@
   <div class="search-container form-group">
     <form class="searchForm">
       <label id="hashtag">#</label>
-      <input type="text" name="searchbar" class="form-control" id="searchInput">
+      <input type="text" name="searchbar" autocomplete="off" class="form-control" id="searchInput">
     </form>
   </div>
 </template>
 
+<template name='loader'>
+  <div class="loader"></div>
+</template>
 
-<template name="tweetTest">
-    <div>
-        <p> hellohello hello {{tester}} </p>
-    </div>
+<template name='graph'>
+  <div class="graphContainer">
+    {{#if submitted}}
+      {{#if loading}}
+        {{> loader}}
+      {{else}}
+        {{tone}}
+      {{/if}}
+    {{/if}}
+  </div>
 
 </template>

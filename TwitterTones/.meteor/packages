@@ -28,3 +28,4 @@ simple:reactive-method
 simple:rest
 session
 msavin:mongol
+meteorhacks:async
