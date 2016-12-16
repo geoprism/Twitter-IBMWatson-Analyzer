@@ -19,12 +19,13 @@ Template.searchBar.events({
     });
 
     var text = event.target.searchbar.value;
-    Meteor.call('analyzeTone', text, function(error, result){
+    Meteor.call('getTones', text, function(error, result){
       Session.set('tone', result);
     });
     Tracker.autorun(function(){
       if(Session.get('tone') != undefined){
         Session.set('loading', false);
+        console.log(Session.get('tone'))
       }
       else{
 
