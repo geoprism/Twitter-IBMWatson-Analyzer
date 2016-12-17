@@ -38,6 +38,7 @@ Template.barGraph.onRendered(function(){
   var joy = tone.document_tone.tone_categories[0].tones[3].score * 100;
   var sadness = tone.document_tone.tone_categories[0].tones[4].score * 100;
   Chart.defaults.global.defaultFontColor="#cccccc";
+  Chart.defaults.global.maintainAspectRatio = false;
   var myChart = new Chart(ctx, {
     type: 'horizontalBar',
     fontColor:"white",
@@ -47,18 +48,18 @@ Template.barGraph.onRendered(function(){
             label: 'Percentage',
             data: [anger, disgust, fear, joy, sadness],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
+                '#ed4100',
+                '#00a17d',
+                '#8565c4',
+                '#edb800',
+                '#65a3c4',
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
+                '#ed4100',
+                '#00a17d',
+                '#8565c4',
+                '#edb800',
+                '#65a3c4',
             ],
             borderWidth: 1
         }]
@@ -68,7 +69,7 @@ Template.barGraph.onRendered(function(){
             yAxes: [{
                 ticks: {
                     beginAtZero:true
-                }
+                },
             }]
         }
     }
