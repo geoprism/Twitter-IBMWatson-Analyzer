@@ -70,6 +70,8 @@ Template.barGraph.onRendered(function(){
                 ticks: {
                     beginAtZero:true
                 },
+                barPercentage:1,
+                categoryPercentage:1,
             }]
         }
     }

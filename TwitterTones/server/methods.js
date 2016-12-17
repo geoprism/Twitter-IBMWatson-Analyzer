@@ -22,7 +22,6 @@ function getTweets(text, callback){
         if (err)
           console.log(err);
         else{
-            console.log(data.user);
             for(var i = 0; i<data.statuses.length; i++)
                 allTweets = allTweets + " " + data.statuses[i].text;
 
