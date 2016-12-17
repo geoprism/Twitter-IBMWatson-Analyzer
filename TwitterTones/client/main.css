@@ -48,11 +48,18 @@ body{
 
 .graphContainer{
   margin:0 auto;
-  padding-top:20%;
+  padding-top:3%;
   width:100%;
   text-align:center;
 }
 
+.barGraphContainer{
+  width:95%;
+}
+
+.loader-container{
+  margin-top:100px;
+}
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */

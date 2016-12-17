@@ -18,7 +18,9 @@
 </template>
 
 <template name='loader'>
-  <div class="loader"></div>
+  <div class='loader-container'>
+    <div class="loader"></div>
+  </div>
 </template>
 
 <template name='graph'>
@@ -27,9 +29,14 @@
       {{#if loading}}
         {{> loader}}
       {{else}}
-        {{tone}}
+        {{> barGraph}}
       {{/if}}
     {{/if}}
   </div>
+</template>
 
+<template name="barGraph">
+  <div class="barGraphContainer">
+    <canvas id="barGraph"></canvas>
+  </div>
 </template>
