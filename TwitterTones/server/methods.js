@@ -17,18 +17,20 @@ var T = new Twit({
 
 
 function getTweets(text, callback){
-    var allTweets = ""
+    var allTweets = "";
     T.get('search/tweets', { q: text, count: 100, lang:'en', result_type:'recent' }, function(err, data, response) {
-        if (err)
+        if (err){
+          console.log("ERROR1");
           console.log(err);
+        }
         else{
-            console.log(data.user);
             for(var i = 0; i<data.statuses.length; i++)
                 allTweets = allTweets + " " + data.statuses[i].text;
-
             tone_analyzer.tone({ text: allTweets },function(err, tone) {
-                if (err)
+                if (err){
                   console.log(err);
+                  callback(null, 0);
+                }
                 else
                   callback(null, tone);
             });
