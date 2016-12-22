@@ -1,6 +1,14 @@
 Meteor.startup(function(){
   Session.set("submitted", false);
-})
+  var toneMap = {
+    0:'#ed4100',
+    1:'#00a17d',
+    2:'#8565c4',
+    3:'#edb800',
+    4:'#65a3c4'
+  };
+  Session.set('toneMap', toneMap);
+});
 
 Template.searchBar.events({
   'submit .searchForm'(event) {
@@ -50,10 +58,12 @@ Template.barGraph.onRendered(function(){
   var tone = Session.get('tone');
   Chart.defaults.global.defaultFontColor="#cccccc";
   Chart.defaults.global.maintainAspectRatio = false;
-  Chart.defaults.global.title.text = "#" + Session.get('text');
+  Chart.defaults.global.title.text = "#" + Session.get('text').toLowerCase();
+  Chart.defaults.global.title.fontFamily = 'Varela Round';
   Chart.defaults.global.title.display = true;
   Chart.defaults.global.title.fontSize = 25;
   if(tone == 0){
+    Chart.defaults.global.title.fontColor = 'white';
     var myChart = new Chart(ctx, {
       type: 'horizontalBar',
       fontColor:"white",
@@ -107,6 +117,8 @@ Template.barGraph.onRendered(function(){
   var fear = tone.document_tone.tone_categories[0].tones[2].score * 100;
   var joy = tone.document_tone.tone_categories[0].tones[3].score * 100;
   var sadness = tone.document_tone.tone_categories[0].tones[4].score * 100;
+  console.log(Session.get('toneMap')[getMaxIndex([anger, disgust, fear, joy, sadness])]);
+  Chart.defaults.global.title.fontColor = Session.get('toneMap')[getMaxIndex([anger, disgust, fear, joy, sadness])];
   var myChart = new Chart(ctx, {
     type: 'horizontalBar',
     fontColor:"white",
@@ -165,3 +177,15 @@ Template.searchBar.helpers({
       return ReactiveMethod.call("getPopularSearches");
   }
 });
+
+function getMaxIndex(list){
+  maxindex = -1;
+  max = -1;
+  for(var i=0; i<list.length; i++){
+    if(list[i] > max){
+      max = list[i];
+      maxindex = i;
+    }
+  }
+  return maxindex;
+}
