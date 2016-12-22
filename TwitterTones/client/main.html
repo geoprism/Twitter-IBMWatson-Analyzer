@@ -14,6 +14,9 @@
       <label id="hashtag">#</label>
       <input type="text" name="searchbar" autocomplete="off" class="form-control" id="searchInput">
     </form>
+    {{#each popsearch}}
+        <a href="#"> #{{this}} </a>
+    {{/each}}
   </div>
 </template>
 

@@ -140,3 +140,9 @@ Template.graph.helpers({
     return "Graph goes here.";
   }
 });
+
+Template.searchBar.helpers({
+  popsearch: function(){
+      return ReactiveMethod.call("getPopularSearches");
+  }
+});

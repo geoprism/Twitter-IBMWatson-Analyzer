@@ -48,8 +48,44 @@ var tweetTones = Async.wrap(getTweets);
 
 Meteor.methods({
   getTones:function(text){
+      if(Searches.findOne({'search': text})){
+
+          console.log("THIS WAS SEARCHED BEFORE")
+          var searchid = Searches.findOne({'search':text})._id;
+          Searches.update(searchid, {$inc: {count: 1},
+                                     $set: {submitted: new Date()}
+                                 });
+      }
+      else{
+          Searches.insert({submitted: new Date(),
+                           search: text,
+                           count: 1});
+      }
+
       var response = tweetTones(text);
       return response;
+  },
+
+  getPopularSearches: function(){
+      var tempArray = [];
+      var dayOld = new Date();
+      dayOld.setDate(dayOld.getDate() - 1);  //date object that is a day old
+
+      console.log(dayOld);
+      console.log(new Date());
+      Searches.find({}, {sort: {count: -1}}).forEach(function(obj){
+          if(obj.submitted < dayOld){   //if the hashtag is less than a day old get rid of it
+              Searches.remove(obj)
+          }
+          else if(tempArray.length <5){
+              tempArray.push(obj.search);
+              console.log(obj.search);
+          }
+      });
+
+      console.log(tempArray);
+      return tempArray;
   }
+
 
 });
