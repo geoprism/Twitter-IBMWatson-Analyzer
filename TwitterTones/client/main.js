@@ -80,6 +80,9 @@ Template.barGraph.onRendered(function(){
           }]
       },
       options: {
+          legend: {
+            display:false
+          },
           scales: {
               yAxes: [{
                   ticks: {
@@ -130,6 +133,9 @@ Template.barGraph.onRendered(function(){
         }]
     },
     options: {
+      legend: {
+        display:false
+      },
         scales: {
             yAxes: [{
                 ticks: {
