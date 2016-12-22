@@ -4,33 +4,71 @@ Meteor.startup(function(){
 
 Template.searchBar.events({
   'submit .searchForm'(event) {
-    setTimeout(function(){
-      Session.set('submitted', true);
-    }, 400);
-    Session.set('tone', undefined);
-    Session.set('loading', true);
-    event.preventDefault();
-    $('.main-title').animate({
-      marginTop:'2%'
-    });
-    $('.search-container').animate({
-      marginTop:'20px'
-    });
+      event.preventDefault();
+      var text = event.target.searchbar.value;
+      if(text != ""){
+            setTimeout(function(){
+              Session.set('submitted', true);
+            }, 400);
+            Session.set('tone', undefined);
+            Session.set('loading', true);
+            event.preventDefault();
+            $('.main-title').animate({
+              marginTop:'2%'
+            });
+            $('.search-container').animate({
+              marginTop:'20px'
+            });
 
-    var text = event.target.searchbar.value;
-    Meteor.call('getTones', text, function(error, result){
-      Session.set('tone', result);
-      console.log(result);
-    });
-    Tracker.autorun(function(){
-      if(Session.get('tone') != undefined){
-        Session.set('loading', false);
+            Meteor.call('getTones', text, function(error, result){
+              Session.set('tone', result);
+              console.log(result);
+            });
+            Tracker.autorun(function(){
+              if(Session.get('tone') != undefined){
+                Session.set('loading', false);
+              }
+              else if(Session.get('tone') == 0){
+                Session.set("loading", false);
+              }
+            });
       }
-      else if(Session.get('tone') == 0){
-        Session.set("loading", false);
-      }
-    });
   },
+
+  'click .popular'() {
+      var text = this.valueOf();
+      console.log(text);
+      if(text != ""){
+            setTimeout(function(){
+              Session.set('submitted', true);
+            }, 400);
+            Session.set('tone', undefined);
+            Session.set('loading', true);
+            event.preventDefault();
+            $('.main-title').animate({
+              marginTop:'2%'
+            });
+            $('.search-container').animate({
+              marginTop:'20px'
+            });
+
+            Meteor.call('getTones', text, function(error, result){
+              Session.set('tone', result);
+              console.log(result);
+            });
+            Tracker.autorun(function(){
+              if(Session.get('tone') != undefined){
+                Session.set('loading', false);
+              }
+              else if(Session.get('tone') == 0){
+                Session.set("loading", false);
+              }
+            });
+      }
+  },
+
+
+
 });
 
 Template.barGraph.onRendered(function(){
