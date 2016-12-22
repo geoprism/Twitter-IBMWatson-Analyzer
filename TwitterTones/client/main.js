@@ -10,6 +10,7 @@ Template.searchBar.events({
             setTimeout(function(){
               Session.set('submitted', true);
             }, 400);
+            Session.set('text', undefined);
             Session.set('tone', undefined);
             Session.set('loading', true);
             event.preventDefault();
@@ -19,7 +20,7 @@ Template.searchBar.events({
             $('.search-container').animate({
               marginTop:'20px'
             });
-
+            Session.set('text', text);
             Meteor.call('getTones', text, function(error, result){
               Session.set('tone', result);
               console.log(result);
@@ -47,9 +48,12 @@ Template.searchBar.events({
 Template.barGraph.onRendered(function(){
   var ctx = $("#barGraph");
   var tone = Session.get('tone');
+  Chart.defaults.global.defaultFontColor="#cccccc";
+  Chart.defaults.global.maintainAspectRatio = false;
+  Chart.defaults.global.title.text = "#" + Session.get('text');
+  Chart.defaults.global.title.display = true;
+  Chart.defaults.global.title.fontSize = 25;
   if(tone == 0){
-    Chart.defaults.global.defaultFontColor="#cccccc";
-    Chart.defaults.global.maintainAspectRatio = false;
     var myChart = new Chart(ctx, {
       type: 'horizontalBar',
       fontColor:"white",
@@ -100,8 +104,6 @@ Template.barGraph.onRendered(function(){
   var fear = tone.document_tone.tone_categories[0].tones[2].score * 100;
   var joy = tone.document_tone.tone_categories[0].tones[3].score * 100;
   var sadness = tone.document_tone.tone_categories[0].tones[4].score * 100;
-  Chart.defaults.global.defaultFontColor="#cccccc";
-  Chart.defaults.global.maintainAspectRatio = false;
   var myChart = new Chart(ctx, {
     type: 'horizontalBar',
     fontColor:"white",
