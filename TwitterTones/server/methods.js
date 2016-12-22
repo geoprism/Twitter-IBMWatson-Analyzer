@@ -48,6 +48,7 @@ var tweetTones = Async.wrap(getTweets);
 
 Meteor.methods({
   getTones:function(text){
+      text = text.toLowerCase().trim();
       if(Searches.findOne({'search': text})){
 
           console.log("THIS WAS SEARCHED BEFORE")
@@ -77,7 +78,7 @@ Meteor.methods({
           if(obj.submitted < dayOld){   //if the hashtag is less than a day old get rid of it
               Searches.remove(obj)
           }
-          else if(tempArray.length <5){
+          else if(tempArray.length <5 && obj.search.length<15){
               tempArray.push(obj.search);
               console.log(obj.search);
           }
