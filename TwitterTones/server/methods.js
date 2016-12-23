@@ -45,7 +45,8 @@ var tweetTones = Async.wrap(getTweets);
 var embed = Async.wrap(function(tweetdata, callback){
   var httplist = [];
   for(var i=0; i<tweetdata.statuses.length; i++){
-    httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=https://twitter.com/Interior/status/507185938620219395', {}).data.html);
+    var url = 'https://twitter.com/' + tweetdata.statuses[i].user.screen_name + '/status/' + tweetdata.statuses[i].id_str;
+    httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=' + url, {}).data.html);
   }
   callback(null, httplist);
 });
