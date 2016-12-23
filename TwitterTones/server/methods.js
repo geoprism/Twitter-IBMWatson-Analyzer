@@ -13,44 +13,48 @@ var T = new Twit({
     consumer_secret:'Z1Ro921uD1cR9JjVZ6k9xZikcRyOMIbgkNaeycHsdLPVqPxx0o',
     access_token:'809174676605833217-0u0zEOOaXwDzHbnAf2p6V6pPObL74z3',
     access_token_secret:'jiNkfYYJotPQ35WfbpaIU3ALgW2LqBndRAcoLfCqg4Y92'
-})
-
+});
 
 function getTweets(text, callback){
     var allTweets = "";
+    var result = [];
     T.get('search/tweets', { q: text, count: 100, lang:'en', result_type:'recent' }, function(err, data, response) {
         if (err){
-          console.log("ERROR1");
           console.log(err);
         }
         else{
-            for(var i = 0; i<data.statuses.length; i++)
-                allTweets = allTweets + " " + data.statuses[i].text;
+            for(var i = 0; i<data.statuses.length; i++){
+              allTweets = allTweets + " " + data.statuses[i].text;
+            }
             tone_analyzer.tone({ text: allTweets },function(err, tone) {
                 if (err){
                   console.log(err);
                   callback(null, 0);
                 }
-                else
-                  callback(null, tone);
+                else{
+                  result.push(tone, data);
+                }
+                  callback(null, result);
             });
         }
     });
-
-
 }
 
 
-
-
-
 var tweetTones = Async.wrap(getTweets);
+var embed = Async.wrap(function(tweetdata, callback){
+  var httplist = [];
+  for(var i=0; i<tweetdata.statuses.length; i++){
+    httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=https://twitter.com/Interior/status/507185938620219395', {}).data.html);
+  }
+  callback(null, httplist);
+});
+
 
 Meteor.methods({
   getTones:function(text){
       text = text.toLowerCase().trim();
       if(Searches.findOne({'search': text})){
-
           console.log("THIS WAS SEARCHED BEFORE")
           var searchid = Searches.findOne({'search':text})._id;
           Searches.update(searchid, {$inc: {count: 1},
@@ -86,6 +90,12 @@ Meteor.methods({
 
       console.log(tempArray);
       return tempArray;
+  },
+
+  embedTweet: function(tweetdata){
+    var response = embed(tweetdata);
+    console.log(response);
+    return response;
   }
 
 

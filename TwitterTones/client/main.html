@@ -33,6 +33,7 @@
         {{> loader}}
       {{else}}
         {{> barGraph}}
+        {{> embeds}}
       {{/if}}
     {{/if}}
   </div>
@@ -42,4 +43,12 @@
   <div class="barGraphContainer">
     <canvas id="barGraph" height="500px"></canvas>
   </div>
+</template>
+
+<template name="embeds">
+  {{#if hasTweetData}}
+    {{tweetdata}}
+  {{else}}
+    {{> loader}}
+  {{/if}}
 </template>

@@ -1,5 +1,6 @@
 Meteor.startup(function(){
   Session.set("submitted", false);
+  Session.set('tweetdata', undefined);
   var toneMap = {
     0:'#ed4100',
     1:'#00a17d',
@@ -20,6 +21,7 @@ Template.searchBar.events({
             }, 400);
             Session.set('text', undefined);
             Session.set('tone', undefined);
+            Session.set('tweetdata', undefined);
             Session.set('loading', true);
             event.preventDefault();
             $('.main-title').animate({
@@ -30,8 +32,10 @@ Template.searchBar.events({
             });
             Session.set('text', text);
             Meteor.call('getTones', text, function(error, result){
-              Session.set('tone', result);
-              console.log(result);
+              Session.set('tone', result[0]);
+              Meteor.call('embedTweet', result[1], function(error2,result2){
+                Session.set('tweetdata', result2);
+              });
             });
             Tracker.autorun(function(){
               if(Session.get('tone') != undefined){
@@ -117,7 +121,6 @@ Template.barGraph.onRendered(function(){
   var fear = tone.document_tone.tone_categories[0].tones[2].score * 100;
   var joy = tone.document_tone.tone_categories[0].tones[3].score * 100;
   var sadness = tone.document_tone.tone_categories[0].tones[4].score * 100;
-  console.log(Session.get('toneMap')[getMaxIndex([anger, disgust, fear, joy, sadness])]);
   Chart.defaults.global.title.fontColor = Session.get('toneMap')[getMaxIndex([anger, disgust, fear, joy, sadness])];
   var myChart = new Chart(ctx, {
     type: 'horizontalBar',
@@ -157,7 +160,7 @@ Template.barGraph.onRendered(function(){
         }
     }
   });
-})
+});
 
 Template.graph.helpers({
   submitted:function(){
@@ -169,12 +172,25 @@ Template.graph.helpers({
   },
   tone:function(){
     return "Graph goes here.";
+  },
+
+});
+
+Template.embeds.helpers({
+  hasTweetData:function(){
+    if(Session.get('tweetdata') == undefined || Session.get('tweetdata') == [] || Session.get('tweetdata') == null)
+      return false;
+    return true;
+  },
+
+  tweetdata:function(){
+    return Session.get('tweetdata');
   }
 });
 
 Template.searchBar.helpers({
   popsearch: function(){
-      return ReactiveMethod.call("getPopularSearches");
+    return ReactiveMethod.call("getPopularSearches");
   }
 });
 
