@@ -47,7 +47,12 @@
 
 <template name="embeds">
   {{#if hasTweetData}}
-    {{tweetdata}}
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <center>
+        {{#each tweetdata}}
+            {{{this}}}
+        {{/each}}
+    </center>
   {{else}}
     {{> loader}}
   {{/if}}

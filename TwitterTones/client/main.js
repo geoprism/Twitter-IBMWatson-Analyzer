@@ -176,6 +176,18 @@ Template.graph.helpers({
 
 });
 
+Template.embeds.onRendered(function(){
+  ! function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)) {
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }(document, "script", "twitter-wjs");
+});
+
 Template.embeds.helpers({
   hasTweetData:function(){
     if(Session.get('tweetdata') == undefined || Session.get('tweetdata') == [] || Session.get('tweetdata') == null)

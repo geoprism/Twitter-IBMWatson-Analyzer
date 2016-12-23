@@ -44,7 +44,7 @@ function getTweets(text, callback){
 var tweetTones = Async.wrap(getTweets);
 var embed = Async.wrap(function(tweetdata, callback){
   var httplist = [];
-  for(var i=0; i<tweetdata.statuses.length; i++){
+  for(var i=0; i<20; i++){
     var url = 'https://twitter.com/' + tweetdata.statuses[i].user.screen_name + '/status/' + tweetdata.statuses[i].id_str;
     httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=' + url, {}).data.html);
   }
