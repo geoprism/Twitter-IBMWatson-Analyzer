@@ -47,13 +47,15 @@
 
 <template name="embeds">
   {{#if hasTweetData}}
-    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <center>
-        {{#each tweetdata}}
-            {{{this}}}
-        {{/each}}
-    </center>
-  {{else}}
-    {{> loader}}
+    {{#if loading}}
+      {{> loader}}
+    {{else}}
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <center>
+          {{#each tweetdata}}
+              {{{this}}}
+          {{/each}}
+      </center>
+    {{/if}}
   {{/if}}
 </template>

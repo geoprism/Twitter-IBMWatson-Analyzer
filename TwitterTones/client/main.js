@@ -21,7 +21,7 @@ Template.searchBar.events({
             }, 400);
             Session.set('text', undefined);
             Session.set('tone', undefined);
-            Session.set('tweetdata', undefined);
+            Session.set('tweetdata', 'loading');
             Session.set('loading', true);
             event.preventDefault();
             $('.main-title').animate({
@@ -32,10 +32,17 @@ Template.searchBar.events({
             });
             Session.set('text', text);
             Meteor.call('getTones', text, function(error, result){
-              Session.set('tone', result[0]);
-              Meteor.call('embedTweet', result[1], function(error2,result2){
-                Session.set('tweetdata', result2);
-              });
+              if(result == 0){
+                Session.set('tone', 0);
+                Session.set('tweetdata', []);
+              }
+              else{
+                Session.set('tone', result[0]);
+                console.log(result[0]);
+                Meteor.call('embedTweet', result[1], function(error2,result2){
+                  Session.set('tweetdata', result2);
+                });
+              }
             });
             Tracker.autorun(function(){
               if(Session.get('tone') != undefined){
@@ -197,6 +204,10 @@ Template.embeds.helpers({
 
   tweetdata:function(){
     return Session.get('tweetdata');
+  },
+
+  loading:function(){
+    return Session.get('tweetdata') == 'loading';
   }
 });
 

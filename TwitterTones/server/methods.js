@@ -43,12 +43,17 @@ function getTweets(text, callback){
 
 var tweetTones = Async.wrap(getTweets);
 var embed = Async.wrap(function(tweetdata, callback){
-  var httplist = [];
-  for(var i=0; i<20; i++){
-    var url = 'https://twitter.com/' + tweetdata.statuses[i].user.screen_name + '/status/' + tweetdata.statuses[i].id_str;
-    httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=' + url, {}).data.html);
+  if(tweetdata == null){
+    callback(null, []);
   }
-  callback(null, httplist);
+  else{
+    var httplist = [];
+    for(var i=0; i<20; i++){
+      var url = 'https://twitter.com/' + tweetdata.statuses[i].user.screen_name + '/status/' + tweetdata.statuses[i].id_str;
+      httplist.push(HTTP.call('GET','https://publish.twitter.com/oembed?url=' + url, {}).data.html);
+    }
+    callback(null, httplist);
+  }
 });
 
 
@@ -95,7 +100,6 @@ Meteor.methods({
 
   embedTweet: function(tweetdata){
     var response = embed(tweetdata);
-    console.log(response);
     return response;
   }
 
