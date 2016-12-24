@@ -14,7 +14,11 @@ IBM Watson: https://www.ibm.com/watson/developercloud/tone-analyzer.html
 Twitter: https://dev.twitter.com/rest/public/search
 
 ## Tools Used
-
 MeteorJS: https://www.meteor.com/
 
 MongoDB: https://www.mongodb.com/
+
+##Preview
+![screen shot 2016-12-23 at 5 37 56 pm](https://cloud.githubusercontent.com/assets/14288364/21464615/1412873c-c937-11e6-90c8-2d60949436a8.png)
+
+
