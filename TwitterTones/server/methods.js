@@ -2,17 +2,17 @@
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 
 var tone_analyzer = new ToneAnalyzerV3({
-  username: '30363b01-94ab-43ff-9852-e81718959aaa',
-  password: 'hI47WE4A3eEv',
+  username: 'INSERT_OWN_KEY',
+  password: 'INSERT_OWN_KEY',
   version_date: '2016-05-19'
 });
 
 
 var T = new Twit({
-    consumer_key:'PwgR7iTbJxSYUxLREaQ9k4aG3',
-    consumer_secret:'Z1Ro921uD1cR9JjVZ6k9xZikcRyOMIbgkNaeycHsdLPVqPxx0o',
-    access_token:'809174676605833217-0u0zEOOaXwDzHbnAf2p6V6pPObL74z3',
-    access_token_secret:'jiNkfYYJotPQ35WfbpaIU3ALgW2LqBndRAcoLfCqg4Y92'
+    consumer_key:'INSERT_OWN_KEY',
+    consumer_secret:'INSERT_OWN_KEY',
+    access_token:'INSERT_OWN_KEY',
+    access_token_secret:'INSERT_OWN_KEY'
 });
 
 function getTweets(text, callback){
