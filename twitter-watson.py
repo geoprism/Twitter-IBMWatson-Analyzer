@@ -3,15 +3,15 @@ from watson_developer_cloud import ToneAnalyzerV3
 import twitter
 
 tone_analyzer = ToneAnalyzerV3(
-  password = "hI47WE4A3eEv",
-  username = "30363b01-94ab-43ff-9852-e81718959aaa",
+  password = "INSERT_OWN_KEY",
+  username = "INSERT_OWN_KEY",
   version='2016-05-19 '
 )
 
-api = twitter.Api(consumer_key='PwgR7iTbJxSYUxLREaQ9k4aG3',
-                      consumer_secret='Z1Ro921uD1cR9JjVZ6k9xZikcRyOMIbgkNaeycHsdLPVqPxx0o',
-                      access_token_key='809174676605833217-0u0zEOOaXwDzHbnAf2p6V6pPObL74z3',
-                      access_token_secret='jiNkfYYJotPQ35WfbpaIU3ALgW2LqBndRAcoLfCqg4Y92')
+api = twitter.Api(consumer_key='INSERT_OWN_KEY',
+                      consumer_secret='INSERT_OWN_KEY',
+                      access_token_key='INSERT_OWN_KEY',
+                      access_token_secret='INSERT_OWN_KEY')
 
 
 
