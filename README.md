@@ -21,12 +21,17 @@ MeteorJS: https://www.meteor.com/
 MongoDB: https://www.mongodb.com/
 
 ##HOW TO USE:
-1.) Clone project
-2.) Insert Twitter API key and IBM Watson API Key in '''TwitterTones/server/methods.js'''
-3.) Download MeteorJS: https://www.meteor.com/install
-4.) Run meteor command in terminal: '''meteor'''
-5.) Go to: http://localhost:3000/
+1.) Clone project    
+2.) Insert Twitter API key and IBM Watson API Key in `TwitterTones/server/methods.js`     
+3.) Download MeteorJS: https://www.meteor.com/install      
+4.) Run meteor command in terminal: `meteor`    
+5.) Go to: http://localhost:3000/     
 6.) Enjoy :)
 
 ##Preview
 ![screen shot 2016-12-23 at 5 37 56 pm](https://cloud.githubusercontent.com/assets/14288364/21464615/1412873c-c937-11e6-90c8-2d60949436a8.png)
+
+![screen shot 2016-12-29 at 11 47 59 pm](https://cloud.githubusercontent.com/assets/14288364/21561562/d15f01e0-ce22-11e6-9622-e202be315aab.png)
+
+![screen shot 2016-12-29 at 11 54 44 pm](https://cloud.githubusercontent.com/assets/14288364/21561565/dabad110-ce22-11e6-89de-d07f7414f433.png)
+
