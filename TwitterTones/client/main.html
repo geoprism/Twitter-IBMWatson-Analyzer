@@ -31,6 +31,7 @@
     {{#if submitted}}
       {{#if loading}}
         {{> loader}}
+        <p>Analyzing Tone...</p>
       {{else}}
         {{> barGraph}}
         {{> embeds}}
@@ -49,6 +50,7 @@
   {{#if hasTweetData}}
     {{#if loading}}
       {{> loader}}
+      <p>Grabbing Tweets...</p>
     {{else}}
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
       <center>
