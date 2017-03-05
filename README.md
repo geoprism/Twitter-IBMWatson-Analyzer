@@ -1,5 +1,4 @@
 # Twitter IBM Watson Tone Analyzer
-Analyze the sentiment of tweets
 
 Our app processes a search term or hashtag through IBM Watson's Tone Analyzer.
 This gives user the ability to receive a general consensus for the overall mood
